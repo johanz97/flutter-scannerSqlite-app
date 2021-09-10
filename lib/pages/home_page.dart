@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:scanner_sqlite/pages/direcciones_page.dart';
-import 'package:scanner_sqlite/pages/mapas_page.dart';
-import 'package:scanner_sqlite/providers/db_provider.dart';
+import 'package:scanner_sqlite/providers/scan_list_provider.dart';
 import 'package:scanner_sqlite/providers/ui_providers.dart';
+import 'package:scanner_sqlite/widgets/scan_list.dart';
 import 'package:scanner_sqlite/widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,7 +14,12 @@ class HomePage extends StatelessWidget {
           'Historial',
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.delete_forever))
+          IconButton(
+              onPressed: () {
+                Provider.of<ScanListProvider>(context, listen: false)
+                    .borrarTodos();
+              },
+              icon: Icon(Icons.delete_forever))
         ],
       ),
       body: _HomePageBody(),
@@ -29,18 +33,21 @@ class HomePage extends StatelessWidget {
 class _HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //final tempScan = new ScanModel(valor: 'http://google.com');
-    //DBProvider.db.deleteallScan().then((value) => print(value));
-
     final uiProvider = Provider.of<UIProviders>(context);
     final currentIndex = uiProvider.selectedOpt;
+    //Usar Scanlistproviders
+    final scanListProvider =
+        Provider.of<ScanListProvider>(context, listen: false);
+
     switch (currentIndex) {
       case 0:
-        return MapasPage();
+        scanListProvider.cargarScansTipo('geo');
+        return ScanList(tipo: 'geo');
       case 1:
-        return DireccionesPage();
+        scanListProvider.cargarScansTipo('http');
+        return ScanList(tipo: 'http');
       default:
-        return MapasPage();
+        return ScanList(tipo: 'geo');
     }
   }
 }
