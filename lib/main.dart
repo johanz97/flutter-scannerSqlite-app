@@ -28,7 +28,8 @@ class MyApp extends StatelessWidget {
             floatingActionButtonTheme: FloatingActionButtonThemeData(
                 backgroundColor: Colors.deepPurple),
             bottomNavigationBarTheme: BottomNavigationBarThemeData(
-                selectedItemColor: Colors.deepPurple)),
+                selectedItemColor: Colors.deepPurple),
+            appBarTheme: AppBarTheme(color: Colors.deepPurple)),
       ),
     );
   }
