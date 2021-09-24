@@ -3,7 +3,7 @@
   <li type="circle">Developer: <a href="https://www.linkedin.com/in/johan-zambrano-b537501bb/">Johan Zambrano</a></li>
 </ul>
 
-A mobile app created with Flutter
+A mobile application created with Flutter using provider as status manager
 <ul>
   <li type="circle">Show geolocations using <a href="https://www.google.com.ec/maps/">google maps</a></li>
   <li type="circle">Allows you to change the type of map</li>
